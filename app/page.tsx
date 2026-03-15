@@ -26,7 +26,7 @@ export default function Page() {
           {/* We use a placeholder image with red/dark tones matching the palette. 
               You can replace this src with the actual uploaded image path if you host it. */}
           <Image
-            src="https://github.com/rohithvijayan/NuneshenReels/blob/a778c9b4ad79555b8bd2d3bb1de8ef6bddc2289b/app/1000311396.webp"
+            src="app/1000311396.webp"
             alt="Nuneshan Background"
             fill
             className="object-cover object-center"
