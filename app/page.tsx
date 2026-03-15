@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-
+import bgImage from './1000311396.webp';
 export default function Page() {
   return (
     <div className="min-h-screen bg-black text-white selection:bg-red-900 selection:text-white">
@@ -26,7 +26,7 @@ export default function Page() {
           {/* We use a placeholder image with red/dark tones matching the palette. 
               You can replace this src with the actual uploaded image path if you host it. */}
           <Image
-            src="app/1000311396.webp"
+            src={bgImage}
             alt="Nuneshan Background"
             fill
             className="object-cover object-center"
