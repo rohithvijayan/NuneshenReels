@@ -114,7 +114,7 @@ export default function LiesReelsPage() {
                 priority
               />
             </div>
-            <span className="text-xl font-bold text-red-600 tracking-wider">നുണേഷൻ</span>
+            <span className="text-xl font-bold text-white tracking-wider">നുണേഷൻ</span>
           </div>
         </Link>
         <div className="mx-auto flex-1 max-w-2xl px-8">
