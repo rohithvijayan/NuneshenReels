@@ -48,6 +48,7 @@ const REELS = [
 
 export default function LiesReelsPage() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [selectedVideo, setSelectedVideo] = useState<{id: string, title: string} | null>(null);
   const [watchedSet, setWatchedSet] = useState<Set<number>>(new Set([0]));
   const [popupMessage, setPopupMessage] = useState('');
   const containerRef = useRef<HTMLDivElement>(null);
@@ -126,68 +127,63 @@ export default function LiesReelsPage() {
         ))}
       </div>
 
-      {/* Desktop YouTube Watch Layout */}
-      <div className="hidden lg:flex flex-row w-full h-[calc(100vh-64px)] max-w-[1800px] mx-auto p-6 gap-6">
-        {/* Left: Main Player */}
-        <div className="flex-1 flex flex-col h-full overflow-y-auto hide-scrollbar pb-10 pr-2">
-          <div className="w-full aspect-video bg-black rounded-xl overflow-hidden relative shadow-2xl flex-shrink-0">
-            <iframe
-              src={`https://www.youtube.com/embed/${REELS[activeIndex].id}?autoplay=1&mute=0&rel=0`}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              className="w-full h-full"
-              style={{ border: 'none' }}
-              allowFullScreen
-            />
-          </div>
-          <div className="mt-4 flex-shrink-0">
-            <h1 className="text-xl font-bold text-white">{REELS[activeIndex].title}</h1>
-            <div className="flex items-center justify-between mt-3">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center font-bold text-lg">N</div>
-                <div>
-                  <p className="font-bold text-white text-sm">@nuneshan_exposed</p>
-                  <p className="text-xs text-zinc-400">1.2M subscribers</p>
-                </div>
-                <button className="ml-4 bg-white text-black px-4 py-2 rounded-full font-semibold text-sm hover:bg-gray-200 transition-colors">Subscribe</button>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="flex items-center bg-[#272727] rounded-full">
-                  <button className="flex items-center gap-2 hover:bg-[#3f3f3f] px-4 py-2 rounded-l-full border-r border-[#3f3f3f] transition-colors text-sm font-medium"><Heart className="w-4 h-4"/> 12K</button>
-                  <button className="flex items-center gap-2 hover:bg-[#3f3f3f] px-4 py-2 rounded-r-full transition-colors"><ChevronDown className="w-4 h-4"/></button>
-                </div>
-                <button className="flex items-center gap-2 bg-[#272727] hover:bg-[#3f3f3f] px-4 py-2 rounded-full ml-2 transition-colors text-sm font-medium"><Share2 className="w-4 h-4"/> Share</button>
+      {/* Desktop YouTube Grid Layout */}
+      <div className="hidden lg:grid grid-cols-3 gap-6 w-full max-w-[1800px] mx-auto p-6 h-[calc(100vh-64px)] overflow-y-auto hide-scrollbar">
+        {REELS.map((reel, idx) => (
+          <div 
+            key={`desktop-grid-${reel.id}-${idx}`} 
+            className="flex flex-col gap-3 cursor-pointer group"
+            onClick={() => setSelectedVideo(reel)}
+          >
+            <div className="w-full aspect-video bg-zinc-800 rounded-xl overflow-hidden relative">
+              <img src={`https://img.youtube.com/vi/${reel.id}/hqdefault.jpg`} alt={reel.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+              <div className="absolute bottom-2 right-2 bg-black/80 text-xs px-1.5 py-0.5 rounded font-mono text-white">0:59</div>
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center">
               </div>
             </div>
-            
-            <div className="mt-4 bg-[#272727] hover:bg-[#3f3f3f] transition-colors cursor-pointer rounded-xl p-3 text-sm text-zinc-200">
-              <p className="font-semibold text-white mb-1">120K views  •  Premiered recently</p>
-              <p>Watch the latest exposed lies of Nuneshan. Stay tuned for more updates and share with your friends to spread the truth!</p>
-              <p className="mt-1 text-[#3ea6ff]">#nuneshan3.0 #exposed #kerala</p>
+            <div className="flex gap-3">
+              <div className="w-9 h-9 rounded-full bg-red-600 flex-shrink-0 flex items-center justify-center font-bold text-sm mt-0.5">N</div>
+              <div className="flex flex-col">
+                <h3 className="text-base font-semibold line-clamp-2 text-[#f1f1f1] group-hover:text-white" title={reel.title}>{reel.title}</h3>
+                <p className="text-sm text-[#aaaaaa] mt-1 hover:text-white transition-colors">@nuneshan_exposed</p>
+                <p className="text-sm text-[#aaaaaa]">120K views • 2 days ago</p>
+              </div>
             </div>
           </div>
-        </div>
-
-        {/* Right: Up Next / Playlist */}
-        <div className="w-[400px] xl:w-[450px] h-full overflow-y-auto hide-scrollbar flex flex-col gap-2 pr-2 pb-10">
-          {REELS.map((reel, idx) => (
-            <div 
-              key={`desktop-${reel.id}-${idx}`} 
-              className={`flex gap-2 cursor-pointer group p-1.5 rounded-lg transition-colors ${activeIndex === idx ? 'bg-[#272727]' : 'hover:bg-[#272727]'}`}
-              onClick={() => setActiveIndex(idx)}
-            >
-              <div className="w-40 xl:w-44 aspect-video bg-zinc-800 rounded-lg overflow-hidden relative flex-shrink-0">
-                <img src={`https://img.youtube.com/vi/${reel.id}/hqdefault.jpg`} alt={reel.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-                <div className="absolute bottom-1 right-1 bg-black/80 text-xs px-1 rounded font-mono">0:59</div>
-              </div>
-              <div className="flex flex-col pt-0.5">
-                <h3 className="text-sm font-semibold line-clamp-2 text-[#f1f1f1] group-hover:text-white" title={reel.title}>{reel.title}</h3>
-                <p className="text-xs text-[#aaaaaa] mt-1 hover:text-white transition-colors">@nuneshan_exposed</p>
-                <p className="text-xs text-[#aaaaaa]">120K views • 2 days ago</p>
-              </div>
-            </div>
-          ))}
-        </div>
+        ))}
       </div>
+
+      {/* Desktop Video Modal */}
+      <AnimatePresence>
+        {selectedVideo && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="hidden lg:flex fixed inset-0 z-[100] items-center justify-center bg-black/90 p-12"
+            onClick={() => setSelectedVideo(null)}
+          >
+            <div 
+              className="relative w-full max-w-6xl aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl border border-zinc-800"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button 
+                className="absolute top-4 right-4 z-10 w-10 h-10 bg-black/50 hover:bg-red-600 rounded-full flex items-center justify-center text-white transition-colors"
+                onClick={() => setSelectedVideo(null)}
+              >
+                ✕
+              </button>
+              <iframe
+                src={`https://www.youtube.com/embed/${selectedVideo.id}?autoplay=1&mute=0&rel=0`}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                className="w-full h-full"
+                style={{ border: 'none' }}
+                allowFullScreen
+              />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Engagement Popup */}
       <AnimatePresence>
