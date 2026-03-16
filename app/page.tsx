@@ -1,6 +1,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import bgImage from './1000311396.webp';
+import { Orbitron } from 'next/font/google';
+
+const orbitron = Orbitron({ subsets: ['latin'], weight: ['400', '700'] });
+
 export default function Page() {
   return (
     <div className="min-h-screen bg-black text-white selection:bg-red-900 selection:text-white">
@@ -26,19 +29,13 @@ export default function Page() {
           {/* We use a placeholder image with red/dark tones matching the palette. 
               You can replace this src with the actual uploaded image path if you host it. */}
           <Image
-            src={bgImage}
+            src="https://picsum.photos/seed/reddark/1920/1080"
             alt="Nuneshan Background"
             fill
-            className="object-cover object-center"
+            className="object-cover object-center brightness-[0.4] contrast-[1.2]"
             priority
             referrerPolicy="no-referrer"
           />
-          {/* Black overlay with 60% opacity as requested */}
-          <div className="absolute inset-0 bg-black/60 z-10"></div>
-          {/* Spotlight effect matching the red/orange lighting in the image */}
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(220,38,38,0.4),transparent_60%)] z-10"></div>
-          {/* Additional subtle gradient to blend with the dark theme */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent z-10"></div>
         </div>
 
         {/* Content */}
@@ -58,14 +55,48 @@ export default function Page() {
             സത്യം ചെരുപ്പ് ഇടുമ്പോൾ നുണേശൻ ലോകം കറങ്ങും
           </h1>
           
-          {/* Counter Element */}
-          <div className="mt-12 inline-flex flex-col items-center justify-center p-8 rounded-[2rem] bg-black/50 backdrop-blur-md border border-red-900/50 shadow-[0_0_40px_rgba(220,38,38,0.2)]">
-            <span className="text-lg md:text-xl text-red-200 mb-2 font-medium tracking-wide" style={{ fontFamily: 'var(--font-anek-malayalam)' }}>
-              ഇത് വരെ പറഞ്ഞ കള്ളങ്ങൾ
+          {/* Counter Element - Retro-Neon Digital Odometer */}
+          <div className="mt-12 relative flex flex-col items-center justify-center p-3 md:p-4 rounded-[14px] bg-[#111] border-2 border-[#FF8C00] shadow-[inset_0_2px_8px_rgba(0,0,0,0.9),0_0_15px_rgba(255,140,0,0.5)]">
+            {/* Inner metallic rim */}
+            <div className="absolute inset-0.5 rounded-[11px] border border-gray-600/40 pointer-events-none"></div>
+            
+            {/* Industrial accents (screws) */}
+            <div className="absolute top-1.5 left-1.5 w-1 h-1 rounded-full bg-gray-500 shadow-[inset_0_1px_1px_rgba(0,0,0,0.8)]"></div>
+            <div className="absolute top-1.5 right-1.5 w-1 h-1 rounded-full bg-gray-500 shadow-[inset_0_1px_1px_rgba(0,0,0,0.8)]"></div>
+            <div className="absolute bottom-1.5 left-1.5 w-1 h-1 rounded-full bg-gray-500 shadow-[inset_0_1px_1px_rgba(0,0,0,0.8)]"></div>
+            <div className="absolute bottom-1.5 right-1.5 w-1 h-1 rounded-full bg-gray-500 shadow-[inset_0_1px_1px_rgba(0,0,0,0.8)]"></div>
+
+            {/* Ventilation slits (left & right) */}
+            <div className="absolute left-1 top-1/2 -translate-y-1/2 flex flex-col gap-[3px]">
+              <div className="w-[3px] h-2 bg-black rounded-sm shadow-[inset_0_1px_1px_rgba(0,0,0,0.8)]"></div>
+              <div className="w-[3px] h-2 bg-black rounded-sm shadow-[inset_0_1px_1px_rgba(0,0,0,0.8)]"></div>
+              <div className="w-[3px] h-2 bg-black rounded-sm shadow-[inset_0_1px_1px_rgba(0,0,0,0.8)]"></div>
+            </div>
+            <div className="absolute right-1 top-1/2 -translate-y-1/2 flex flex-col gap-[3px]">
+              <div className="w-[3px] h-2 bg-black rounded-sm shadow-[inset_0_1px_1px_rgba(0,0,0,0.8)]"></div>
+              <div className="w-[3px] h-2 bg-black rounded-sm shadow-[inset_0_1px_1px_rgba(0,0,0,0.8)]"></div>
+              <div className="w-[3px] h-2 bg-black rounded-sm shadow-[inset_0_1px_1px_rgba(0,0,0,0.8)]"></div>
+            </div>
+
+            {/* Label */}
+            <span className="text-[10px] md:text-xs text-[#FF8C00]/80 mb-2 font-sans uppercase tracking-widest z-10" style={{ fontFamily: 'var(--font-anek-malayalam)' }}>
+              ഇതു വരെ പറഞ്ഞ കള്ളങ്ങൾ
             </span>
-            <span className="text-7xl md:text-9xl font-black text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.4)] tracking-tighter leading-none">
-              35
-            </span>
+
+            {/* Digit Bays */}
+            <div className="flex gap-[3px] bg-black p-1 rounded-md border border-gray-800 shadow-[inset_0_2px_5px_rgba(0,0,0,1)] z-10">
+              {['0', '0', '3', '8'].map((digit, i) => (
+                <div key={i} className="flex">
+                  <div className="relative w-6 h-12 md:w-8 md:h-16 bg-gradient-to-b from-gray-900 via-black to-gray-900 rounded flex items-center justify-center overflow-hidden border border-gray-800/80 shadow-[inset_0_0_8px_rgba(0,0,0,1)]">
+                    <span className={`absolute text-[#331100] text-2xl md:text-4xl opacity-40 select-none ${orbitron.className}`}>8</span>
+                    <span className={`relative text-[#FFB800] text-2xl md:text-4xl drop-shadow-[0_0_6px_rgba(255,184,0,0.9)] z-10 ${orbitron.className}`}>{digit}</span>
+                  </div>
+                  {i < 3 && (
+                    <div className="w-px bg-gradient-to-b from-transparent via-gray-700 to-transparent ml-[3px]"></div>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </main>
@@ -81,9 +112,9 @@ export default function Page() {
           </h2>
           
           {/* Horizontal Scroll Container */}
-          <div className="flex overflow-x-auto pb-12 -mx-6 px-6 md:mx-0 md:px-0 gap-8 snap-x snap-mandatory hide-scrollbar">
+          <div className="flex overflow-x-auto pb-12 -mx-6 px-6 md:mx-0 md:px-0 gap-8 snap-x snap-mandatory hide-scrollbar lg:grid lg:grid-cols-3 lg:overflow-visible lg:snap-none">
             {/* Video 1 */}
-            <div className="flex-none w-[280px] md:w-[320px] aspect-[9/16] rounded-[2rem] overflow-hidden snap-center border border-red-900/40 shadow-[0_0_30px_rgba(220,38,38,0.15)] bg-zinc-900 relative">
+            <div className="flex-none w-[280px] md:w-[320px] lg:w-full aspect-[9/16] rounded-[2rem] overflow-hidden snap-center border border-red-900/40 shadow-[0_0_30px_rgba(220,38,38,0.15)] bg-zinc-900 relative">
               <iframe 
                 className="absolute inset-0 w-full h-full"
                 src="https://www.youtube.com/embed/APyREigs9LQ" 
@@ -95,7 +126,7 @@ export default function Page() {
               ></iframe>
             </div>
             {/* Video 2 */}
-            <div className="flex-none w-[280px] md:w-[320px] aspect-[9/16] rounded-[2rem] overflow-hidden snap-center border border-red-900/40 shadow-[0_0_30px_rgba(220,38,38,0.15)] bg-zinc-900 relative">
+            <div className="flex-none w-[280px] md:w-[320px] lg:w-full aspect-[9/16] rounded-[2rem] overflow-hidden snap-center border border-red-900/40 shadow-[0_0_30px_rgba(220,38,38,0.15)] bg-zinc-900 relative">
               <iframe 
                 className="absolute inset-0 w-full h-full"
                 src="https://www.youtube.com/embed/4uY-vkIXg50" 
@@ -107,7 +138,7 @@ export default function Page() {
               ></iframe>
             </div>
             {/* Video 3 */}
-            <div className="flex-none w-[280px] md:w-[320px] aspect-[9/16] rounded-[2rem] overflow-hidden snap-center border border-red-900/40 shadow-[0_0_30px_rgba(220,38,38,0.15)] bg-zinc-900 relative">
+            <div className="flex-none w-[280px] md:w-[320px] lg:w-full aspect-[9/16] rounded-[2rem] overflow-hidden snap-center border border-red-900/40 shadow-[0_0_30px_rgba(220,38,38,0.15)] bg-zinc-900 relative">
               <iframe 
                 className="absolute inset-0 w-full h-full"
                 src="https://www.youtube.com/embed/gH6EQ7GkYqU" 

@@ -52,7 +52,7 @@ export default function LiesReelsPage() {
   const [popupMessage, setPopupMessage] = useState('');
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Intersection Observer to detect which reel is currently in view
+  // Intersection Observer to detect which reel is currently in view (Mobile only)
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -91,16 +91,30 @@ export default function LiesReelsPage() {
   }, [activeIndex]);
 
   return (
-    <div className="bg-black h-[100dvh] w-full overflow-hidden relative text-white" style={{ fontFamily: 'var(--font-anek-malayalam)' }}>
-      {/* Back Button */}
-      <Link href="/" className="absolute top-6 left-4 z-50 p-3 bg-black/40 backdrop-blur-md rounded-full border border-white/10 hover:bg-white/20 transition-colors">
+    <div className="bg-[#0f0f0f] h-[100dvh] lg:h-screen w-full overflow-hidden relative text-white" style={{ fontFamily: 'var(--font-anek-malayalam)' }}>
+      {/* Mobile Back Button */}
+      <Link href="/" className="lg:hidden absolute top-6 left-4 z-50 p-3 bg-black/40 backdrop-blur-md rounded-full border border-white/10 hover:bg-white/20 transition-colors">
         <ArrowLeft className="w-6 h-6 text-white" />
       </Link>
 
-      {/* Reels Container */}
+      {/* Desktop Header (YouTube Style) */}
+      <header className="hidden lg:flex h-16 items-center px-6 border-b border-zinc-800/50 bg-[#0f0f0f] w-full z-50">
+        <Link href="/" className="flex items-center gap-4 hover:opacity-80 transition-opacity">
+          <ArrowLeft className="w-6 h-6 text-white" />
+          <span className="text-xl font-bold text-red-600 tracking-wider">നുണേശൻ</span>
+        </Link>
+        <div className="mx-auto flex-1 max-w-2xl px-8">
+          <div className="w-full bg-[#121212] border border-[#303030] rounded-full px-6 py-2.5 flex items-center text-zinc-400 focus-within:border-blue-500 focus-within:ml-[-1px] transition-colors">
+            <span className="text-sm">Search lies...</span>
+          </div>
+        </div>
+        <div className="w-8 h-8 rounded-full bg-red-800 flex items-center justify-center font-bold text-sm">N</div>
+      </header>
+
+      {/* Mobile Reels Container */}
       <div 
         ref={containerRef}
-        className="h-full w-full overflow-y-scroll snap-y snap-mandatory hide-scrollbar"
+        className="lg:hidden h-full w-full overflow-y-scroll snap-y snap-mandatory hide-scrollbar"
       >
         {REELS.map((reel, index) => (
           <Reel 
@@ -110,6 +124,69 @@ export default function LiesReelsPage() {
             activeIndex={activeIndex} 
           />
         ))}
+      </div>
+
+      {/* Desktop YouTube Watch Layout */}
+      <div className="hidden lg:flex flex-row w-full h-[calc(100vh-64px)] max-w-[1800px] mx-auto p-6 gap-6">
+        {/* Left: Main Player */}
+        <div className="flex-1 flex flex-col h-full overflow-y-auto hide-scrollbar pb-10 pr-2">
+          <div className="w-full aspect-video bg-black rounded-xl overflow-hidden relative shadow-2xl flex-shrink-0">
+            <iframe
+              src={`https://www.youtube.com/embed/${REELS[activeIndex].id}?autoplay=1&mute=0&rel=0`}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              className="w-full h-full"
+              style={{ border: 'none' }}
+              allowFullScreen
+            />
+          </div>
+          <div className="mt-4 flex-shrink-0">
+            <h1 className="text-xl font-bold text-white">{REELS[activeIndex].title}</h1>
+            <div className="flex items-center justify-between mt-3">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center font-bold text-lg">N</div>
+                <div>
+                  <p className="font-bold text-white text-sm">@nuneshan_exposed</p>
+                  <p className="text-xs text-zinc-400">1.2M subscribers</p>
+                </div>
+                <button className="ml-4 bg-white text-black px-4 py-2 rounded-full font-semibold text-sm hover:bg-gray-200 transition-colors">Subscribe</button>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="flex items-center bg-[#272727] rounded-full">
+                  <button className="flex items-center gap-2 hover:bg-[#3f3f3f] px-4 py-2 rounded-l-full border-r border-[#3f3f3f] transition-colors text-sm font-medium"><Heart className="w-4 h-4"/> 12K</button>
+                  <button className="flex items-center gap-2 hover:bg-[#3f3f3f] px-4 py-2 rounded-r-full transition-colors"><ChevronDown className="w-4 h-4"/></button>
+                </div>
+                <button className="flex items-center gap-2 bg-[#272727] hover:bg-[#3f3f3f] px-4 py-2 rounded-full ml-2 transition-colors text-sm font-medium"><Share2 className="w-4 h-4"/> Share</button>
+              </div>
+            </div>
+            
+            <div className="mt-4 bg-[#272727] hover:bg-[#3f3f3f] transition-colors cursor-pointer rounded-xl p-3 text-sm text-zinc-200">
+              <p className="font-semibold text-white mb-1">120K views  •  Premiered recently</p>
+              <p>Watch the latest exposed lies of Nuneshan. Stay tuned for more updates and share with your friends to spread the truth!</p>
+              <p className="mt-1 text-[#3ea6ff]">#nuneshan3.0 #exposed #kerala</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Right: Up Next / Playlist */}
+        <div className="w-[400px] xl:w-[450px] h-full overflow-y-auto hide-scrollbar flex flex-col gap-2 pr-2 pb-10">
+          {REELS.map((reel, idx) => (
+            <div 
+              key={`desktop-${reel.id}-${idx}`} 
+              className={`flex gap-2 cursor-pointer group p-1.5 rounded-lg transition-colors ${activeIndex === idx ? 'bg-[#272727]' : 'hover:bg-[#272727]'}`}
+              onClick={() => setActiveIndex(idx)}
+            >
+              <div className="w-40 xl:w-44 aspect-video bg-zinc-800 rounded-lg overflow-hidden relative flex-shrink-0">
+                <img src={`https://img.youtube.com/vi/${reel.id}/hqdefault.jpg`} alt={reel.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                <div className="absolute bottom-1 right-1 bg-black/80 text-xs px-1 rounded font-mono">0:59</div>
+              </div>
+              <div className="flex flex-col pt-0.5">
+                <h3 className="text-sm font-semibold line-clamp-2 text-[#f1f1f1] group-hover:text-white" title={reel.title}>{reel.title}</h3>
+                <p className="text-xs text-[#aaaaaa] mt-1 hover:text-white transition-colors">@nuneshan_exposed</p>
+                <p className="text-xs text-[#aaaaaa]">120K views • 2 days ago</p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* Engagement Popup */}
