@@ -58,6 +58,9 @@ export default function RealTimeVisitorStats() {
     };
   }, []);
 
+  // 4. Inflation Logic (Gimmick)
+  const [totalOffset] = useState(() => Math.floor(Math.random() * (450 - 300 + 1)) + 300);
+
   return (
     <div className="fixed bottom-6 right-6 z-[100] group">
       <div className="bg-black/40 backdrop-blur-xl border border-white/10 rounded-2xl p-4 shadow-[0_8px_32px_rgba(0,0,0,0.5)] flex flex-col gap-2 transition-all hover:border-red-500/30">
@@ -73,12 +76,12 @@ export default function RealTimeVisitorStats() {
         <div className="flex gap-6">
           <div className="flex flex-col">
             <span className="text-[10px] uppercase text-white/40 mb-1">Live Now</span>
-            <span className="text-xl font-bold tracking-tighter text-white font-mono">{stats.live}</span>
+            <span className="text-xl font-bold tracking-tighter text-white font-mono">{stats.live + 100}</span>
           </div>
           <div className="w-px bg-white/10 my-1"></div>
           <div className="flex flex-col">
             <span className="text-[10px] uppercase text-white/40 mb-1">Total Visitors</span>
-            <span className="text-xl font-bold tracking-tighter text-white font-mono">{stats.total.toLocaleString()}</span>
+            <span className="text-xl font-bold tracking-tighter text-white font-mono">{(stats.total + totalOffset).toLocaleString()}</span>
           </div>
         </div>
       </div>
