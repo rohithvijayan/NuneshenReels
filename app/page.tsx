@@ -29,7 +29,7 @@ export default function Page() {
           {/* We use a placeholder image with red/dark tones matching the palette. 
               You can replace this src with the actual uploaded image path if you host it. */}
           <Image
-            src="{bgImage}"
+            src={bgImage}
             alt="Nuneshan Background"
             fill
             className="object-cover object-center brightness-[0.4] contrast-[1.2]"
