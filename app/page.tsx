@@ -2,6 +2,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Orbitron } from 'next/font/google';
 import bgImage from './1000311396.webp';
+import heroDesktop from './herodesktop.webp';
+import logo from './logo.png';
 const orbitron = Orbitron({ subsets: ['latin'], weight: ['400', '700'] });
 
 export default function Page() {
@@ -9,9 +11,20 @@ export default function Page() {
     <div className="min-h-screen bg-black text-white selection:bg-red-900 selection:text-white">
       {/* Navigation */}
       <nav className="absolute top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-6 md:px-12">
-        <div className="text-2xl font-bold tracking-tighter text-red-600 drop-shadow-md">
-          Nuneshan
-        </div>
+        <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+          <div className="relative w-12 h-12 md:w-16 md:h-16">
+            <Image
+              src={logo}
+              alt="Nuneshan Logo"
+              fill
+              className="object-contain"
+              priority
+            />
+          </div>
+          <div className="text-2xl md:text-3xl font-bold tracking-tighter text-red-600 drop-shadow-md">
+            Nuneshan
+          </div>
+        </Link>
         <div className="flex gap-8 text-sm md:text-base font-medium" style={{ fontFamily: 'var(--font-anek-malayalam)' }}>
           <Link href="/" className="hover:text-red-500 transition-colors drop-shadow-md">
             ഹോം
@@ -24,29 +37,43 @@ export default function Page() {
 
       {/* Hero Section */}
       <main className="relative h-screen w-full flex items-center justify-center overflow-hidden">
-        {/* Background Image */}
+        {/* Background Images */}
         <div className="absolute inset-0 z-0">
-          {/* We use a placeholder image with red/dark tones matching the palette. 
-              You can replace this src with the actual uploaded image path if you host it. */}
-          <Image
-            src={bgImage}
-            alt="Nuneshan Background"
-            fill
-            className="object-cover object-center brightness-[0.4] contrast-[1.2]"
-            priority
-            referrerPolicy="no-referrer"
-          />
+          {/* Mobile Background */}
+          <div className="md:hidden relative h-full w-full">
+            <Image
+              src={bgImage}
+              alt="Nuneshan Background Mobile"
+              fill
+              className="object-cover object-center brightness-[0.4] contrast-[1.2]"
+              priority
+              referrerPolicy="no-referrer"
+            />
+          </div>
+          {/* Desktop Background */}
+          <div className="hidden md:block relative h-full w-full">
+            <Image
+              src={heroDesktop}
+              alt="Nuneshan Background Desktop"
+              fill
+              className="object-cover object-center brightness-[0.4] contrast-[1.2]"
+              priority
+              referrerPolicy="no-referrer"
+            />
+          </div>
         </div>
 
         {/* Content */}
         <div className="relative z-20 px-4 text-center max-w-5xl mx-auto flex flex-col items-center justify-center h-full pt-16">
-          {/* Branding */}
-          <h2 
-            className="text-5xl md:text-7xl lg:text-8xl font-extrabold text-red-600 tracking-wider mb-4 drop-shadow-[0_0_25px_rgba(220,38,38,0.8)]"
-            style={{ fontFamily: 'var(--font-anek-malayalam)' }}
-          >
-            നുണേശൻ
-          </h2>
+          <div className="relative w-96 h-48 md:w-[512px] md:h-[256px] lg:w-[640px] lg:h-[320px] mb-4 drop-shadow-[0_0_40px_rgba(220,38,38,0.8)]">
+            <Image
+              src={logo}
+              alt="Nuneshan Logo"
+              fill
+              className="object-contain"
+              priority
+            />
+          </div>
           
           <h1 
             className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight md:leading-tight text-white drop-shadow-2xl" 
@@ -89,7 +116,7 @@ export default function Page() {
                 <div key={i} className="flex">
                   <div className="relative w-6 h-12 md:w-8 md:h-16 bg-gradient-to-b from-gray-900 via-black to-gray-900 rounded flex items-center justify-center overflow-hidden border border-gray-800/80 shadow-[inset_0_0_8px_rgba(0,0,0,1)]">
                     <span className={`absolute text-[#331100] text-2xl md:text-4xl opacity-40 select-none ${orbitron.className}`}>8</span>
-                    <span className={`relative text-[#FFB800] text-2xl md:text-4xl drop-shadow-[0_0_6px_rgba(255,184,0,0.9)] z-10 ${orbitron.className}`}>{digit}</span>
+                    <span className={`relative text-red-600 text-2xl md:text-4xl drop-shadow-[0_0_8px_rgba(220,38,38,0.9)] z-10 ${orbitron.className}`}>{digit}</span>
                   </div>
                   {i < 3 && (
                     <div className="w-px bg-gradient-to-b from-transparent via-gray-700 to-transparent ml-[3px]"></div>

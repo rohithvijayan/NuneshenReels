@@ -4,6 +4,8 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Heart, MessageCircle, Share2, ChevronDown, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
+import logo from '../logo.png';
 
 // Sample data using the provided YouTube Shorts IDs + a few duplicates to allow scrolling to 5+
 const REELS = [
@@ -100,9 +102,20 @@ export default function LiesReelsPage() {
 
       {/* Desktop Header (YouTube Style) */}
       <header className="hidden lg:flex h-16 items-center px-6 border-b border-zinc-800/50 bg-[#0f0f0f] w-full z-50">
-        <Link href="/" className="flex items-center gap-4 hover:opacity-80 transition-opacity">
+        <Link href="/" className="flex items-center gap-4 hover:opacity-80 transition-opacity h-full py-1">
           <ArrowLeft className="w-6 h-6 text-white" />
-          <span className="text-xl font-bold text-red-600 tracking-wider">നുണേശൻ</span>
+          <div className="flex items-center gap-2 h-full">
+            <div className="relative w-10 h-10 md:w-12 md:h-12">
+              <Image
+                src={logo}
+                alt="Nuneshan Logo"
+                fill
+                className="object-contain"
+                priority
+              />
+            </div>
+            <span className="text-xl font-bold text-red-600 tracking-wider">നുണേഷൻ</span>
+          </div>
         </Link>
         <div className="mx-auto flex-1 max-w-2xl px-8">
           <div className="w-full bg-[#121212] border border-[#303030] rounded-full px-6 py-2.5 flex items-center text-zinc-400 focus-within:border-blue-500 focus-within:ml-[-1px] transition-colors">

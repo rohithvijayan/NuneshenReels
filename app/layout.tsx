@@ -17,6 +17,10 @@ const anekMalayalam = Anek_Malayalam({
 export const metadata: Metadata = {
   title: 'Nuneshan',
   description: 'Nuneshan Landing Page',
+  icons: {
+    icon: '/favicon.ico',
+    apple: '/apple-touch-icon.png',
+  },
 };
 
 export default function RootLayout({children}: {children: React.ReactNode}) {
