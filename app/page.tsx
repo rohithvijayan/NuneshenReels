@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Orbitron } from 'next/font/google';
-
+import bgImage from './1000311396.webp';
 const orbitron = Orbitron({ subsets: ['latin'], weight: ['400', '700'] });
 
 export default function Page() {
@@ -29,7 +29,7 @@ export default function Page() {
           {/* We use a placeholder image with red/dark tones matching the palette. 
               You can replace this src with the actual uploaded image path if you host it. */}
           <Image
-            src="https://picsum.photos/seed/reddark/1920/1080"
+            src="{bgImage}"
             alt="Nuneshan Background"
             fill
             className="object-cover object-center brightness-[0.4] contrast-[1.2]"
