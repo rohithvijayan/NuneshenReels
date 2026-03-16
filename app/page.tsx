@@ -4,6 +4,7 @@ import { Orbitron } from 'next/font/google';
 import bgImage from './1000311396.webp';
 import heroDesktop from './herodesktop.webp';
 import logo from './logo.png';
+import RealTimeVisitorStats from '@/components/RealTimeVisitorStats';
 const orbitron = Orbitron({ subsets: ['latin'], weight: ['400', '700'] });
 
 export default function Page() {
@@ -149,6 +150,7 @@ export default function Page() {
           </div>
         </div>
       </section>
+      <RealTimeVisitorStats />
     </div>
   );
 }
