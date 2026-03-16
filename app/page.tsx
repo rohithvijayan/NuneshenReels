@@ -94,7 +94,9 @@ export default function Page() {
           >
             പെരുംനുണകൾ
           </h2>
+          <p className="text-center text-white mb-16 drop-shadow-lg" style={{ fontFamily: 'var(--font-anek-malayalam)' }}>നമ്മുടെ പ്രതിപക്ഷ നേതാവ് കല്ലുവച്ച നുണകൾ ആവർത്തിക്കുക എന്നത് ഒരു രാഷ്ട്രീയതന്ത്രമായി സ്വീകരിച്ചിരിക്കുകയാണ്. ഈ നുണപറച്ചിൽ കേരളത്തിന്റെ ജനാധിപത്യ പരിസരസത്തെ മുൻപെങ്ങുമില്ലാത്ത വിധം മലിനപ്പെടുത്തുണ്ട്. ഒരു രാഷ്ട്രീയ നേതാവും പിന്തുടരാൻ പാടില്ലാത്ത വഴിയാണിത്. പ്രതിപക്ഷനേതാവിന്റെ നീചമായ നുണയുടെ രാഷ്ട്രീയവഴികളെ തുറന്നു കാട്ടാനുള്ള ശ്രമമാണ് ഈ പേജ്.
 
+          </p>
           {/* Horizontal Scroll Container */}
           <div className="flex overflow-x-auto pb-12 -mx-6 px-6 md:mx-0 md:px-0 gap-8 snap-x snap-mandatory hide-scrollbar lg:grid lg:grid-cols-3 lg:overflow-visible lg:snap-none">
             {/* Video 1 */}
@@ -142,7 +144,7 @@ export default function Page() {
               className="inline-flex items-center justify-center px-8 py-4 bg-red-600 hover:bg-red-700 text-white rounded-full font-bold text-lg transition-all shadow-[0_0_20px_rgba(220,38,38,0.4)] hover:shadow-[0_0_30px_rgba(220,38,38,0.6)] hover:-translate-y-1"
               style={{ fontFamily: 'var(--font-anek-malayalam)' }}
             >
-              കൂടുതൽ നുണകൾ കാണുക (Watch Reels)
+              കൂടുതൽ നുണകൾ കാണുക
             </Link>
           </div>
         </div>
