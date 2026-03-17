@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { Orbitron } from 'next/font/google';
 import bgImage from './1000311396.webp';
 import heroDesktop from './herodesktop.webp';
-import logo from './logo.jpg';
+import logo from './logo.png';
 import RealTimeVisitorStats from '@/components/RealTimeVisitorStats';
 const orbitron = Orbitron({ subsets: ['latin'], weight: ['400', '700'] });
 

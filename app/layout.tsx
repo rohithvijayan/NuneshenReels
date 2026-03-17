@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     siteName: 'Nuneshan',
     images: [
       {
-        url: '/logo.jpg',
+        url: '/logo.png',
         width: 800,
         height: 600,
         alt: 'Nuneshan Logo',
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Nuneshan - Exposing Political Lies in Kerala',
     description: 'Explore the reels of Nuneshan, dedicated to unmasking political lies.',
-    images: ['/logo.jpg'],
+    images: ['/logo.png'],
   },
   icons: {
     icon: '/favicon.ico',

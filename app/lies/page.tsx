@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Heart, MessageCircle, Share2, ChevronDown, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
-import logo from '../logo.jpg';
+import logo from '../logo.png';
 
 // Sample data using the provided YouTube Shorts IDs + a few duplicates to allow scrolling to 5+
 const REELS = [
