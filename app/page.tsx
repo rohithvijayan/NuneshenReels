@@ -77,7 +77,7 @@ export default function Page() {
           </div>
 
           <h1
-            className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight md:leading-tight text-white drop-shadow-2xl"
+            className="text-3xl md:text-5xl lg:text-6xl font-bold leading-tight md:leading-tight text-white drop-shadow-2xl text-balance"
             style={{ fontFamily: 'var(--font-anek-malayalam)' }}
           >
             സത്യം ചെരുപ്പിടുമ്പോഴേക്കും നുണേശൻ ലോകം ചുറ്റിയിട്ടുണ്ടാവും…
