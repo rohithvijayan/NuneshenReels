@@ -152,7 +152,11 @@ export default function LiesReelsPage() {
             onClick={() => setSelectedVideo(reel)}
           >
             <div className="w-full aspect-video bg-zinc-800 rounded-xl overflow-hidden relative">
-              <img src={`https://img.youtube.com/vi/${reel.id}/hqdefault.jpg`} alt={reel.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+              <Thumbnail 
+                src={`https://img.youtube.com/vi/${reel.id}/hqdefault.jpg`} 
+                alt={reel.title} 
+                className="w-full h-full group-hover:scale-105 transition-transform duration-300" 
+              />
               <div className="absolute bottom-2 right-2 bg-black/80 text-xs px-1.5 py-0.5 rounded font-mono text-white">0:59</div>
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center">
               </div>
@@ -218,6 +222,24 @@ export default function LiesReelsPage() {
   );
 }
 
+function Thumbnail({ src, alt, className, priority = false }: { src: string, alt: string, className?: string, priority?: boolean }) {
+  const [isLoaded, setIsLoaded] = useState(false);
+  return (
+    <div className={`relative overflow-hidden ${className}`}>
+      {!isLoaded && (
+        <div className="absolute inset-0 animate-shimmer" />
+      )}
+      <img
+        src={src}
+        alt={alt}
+        className={`w-full h-full object-cover transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+        onLoad={() => setIsLoaded(true)}
+        loading={priority ? 'eager' : 'lazy'}
+      />
+    </div>
+  );
+}
+
 function Reel({ reel, index, activeIndex }: { reel: { id: string, title: string }, index: number, activeIndex: number }) {
   const isActive = activeIndex === index;
   const isNear = Math.abs(activeIndex - index) <= 1;
@@ -260,16 +282,13 @@ function Reel({ reel, index, activeIndex }: { reel: { id: string, title: string 
               loading="lazy"
             />
           ) : isNear ? (
-            <img
+            <Thumbnail
               src={`https://img.youtube.com/vi/${reel.id}/hqdefault.jpg`}
               alt={reel.title}
-              className="w-full h-full object-cover opacity-50"
-              loading="lazy"
+              className="w-full h-full opacity-50"
             />
           ) : (
-            <div className="w-full h-full flex items-center justify-center">
-              <div className="w-12 h-12 border-4 border-red-600 border-t-transparent rounded-full animate-spin"></div>
-            </div>
+            <div className="w-full h-full animate-shimmer" />
           )}
         </div>
 
