@@ -1,4 +1,4 @@
-import type {Metadata} from 'next';
+import type { Metadata } from 'next';
 import { Anek_Malayalam, Inter } from 'next/font/google';
 import './globals.css'; // Global styles
 
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     siteName: 'Nuneshan',
     images: [
       {
-        url: '/logo.png',
+        url: '/logo.jpg',
         width: 800,
         height: 600,
         alt: 'Nuneshan Logo',
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Nuneshan - Exposing Political Lies in Kerala',
     description: 'Explore the reels of Nuneshan, dedicated to unmasking political lies.',
-    images: ['/logo.png'],
+    images: ['/logo.jpg'],
   },
   icons: {
     icon: '/favicon.ico',
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({children}: {children: React.ReactNode}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ml" className={`${inter.variable} ${anekMalayalam.variable}`}>
       <body className="font-sans antialiased bg-black text-white" suppressHydrationWarning>{children}</body>
