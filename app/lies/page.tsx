@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Heart, MessageCircle, Share2, ChevronDown, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
-import logo from '../logo.png';
+import logo from '../logo.jpg';
 
 // Sample data using the provided YouTube Shorts IDs + a few duplicates to allow scrolling to 5+
 const REELS = [
@@ -50,7 +50,7 @@ const REELS = [
 
 export default function LiesReelsPage() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [selectedVideo, setSelectedVideo] = useState<{id: string, title: string} | null>(null);
+  const [selectedVideo, setSelectedVideo] = useState<{ id: string, title: string } | null>(null);
   const [watchedSet, setWatchedSet] = useState<Set<number>>(new Set([0]));
   const [popupMessage, setPopupMessage] = useState('');
   const containerRef = useRef<HTMLDivElement>(null);
@@ -79,10 +79,10 @@ export default function LiesReelsPage() {
   useEffect(() => {
     setWatchedSet((prev) => {
       if (prev.has(activeIndex)) return prev;
-      
+
       const newSet = new Set(prev).add(activeIndex);
       const count = newSet.size;
-      
+
       // Trigger popup at specific milestones
       if ([3, 5, 10, 15, 20].includes(count)) {
         setPopupMessage(`നുണേശന്റെ ${count} നുണകൾ കണ്ടു, നിങ്ങൾ ഒരു സംഭവം തന്നെ!`);
@@ -129,16 +129,16 @@ export default function LiesReelsPage() {
       </header>
 
       {/* Mobile Reels Container */}
-      <div 
+      <div
         ref={containerRef}
         className="lg:hidden h-full w-full overflow-y-scroll snap-y snap-mandatory hide-scrollbar"
       >
         {REELS.map((reel, index) => (
-          <Reel 
-            key={`${reel.id}-${index}`} 
-            reel={reel} 
-            index={index} 
-            activeIndex={activeIndex} 
+          <Reel
+            key={`${reel.id}-${index}`}
+            reel={reel}
+            index={index}
+            activeIndex={activeIndex}
           />
         ))}
       </div>
@@ -146,8 +146,8 @@ export default function LiesReelsPage() {
       {/* Desktop YouTube Grid Layout */}
       <div className="hidden lg:grid grid-cols-3 gap-6 w-full max-w-[1800px] mx-auto p-6 h-[calc(100vh-64px)] overflow-y-auto hide-scrollbar">
         {REELS.map((reel, idx) => (
-          <div 
-            key={`desktop-grid-${reel.id}-${idx}`} 
+          <div
+            key={`desktop-grid-${reel.id}-${idx}`}
             className="flex flex-col gap-3 cursor-pointer group"
             onClick={() => setSelectedVideo(reel)}
           >
@@ -172,18 +172,18 @@ export default function LiesReelsPage() {
       {/* Desktop Video Modal */}
       <AnimatePresence>
         {selectedVideo && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="hidden lg:flex fixed inset-0 z-[100] items-center justify-center bg-black/90 p-12"
             onClick={() => setSelectedVideo(null)}
           >
-            <div 
+            <div
               className="relative w-full max-w-6xl aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl border border-zinc-800"
               onClick={(e) => e.stopPropagation()}
             >
-              <button 
+              <button
                 className="absolute top-4 right-4 z-10 w-10 h-10 bg-black/50 hover:bg-red-600 rounded-full flex items-center justify-center text-white transition-colors"
                 onClick={() => setSelectedVideo(null)}
               >
@@ -260,8 +260,8 @@ function Reel({ reel, index, activeIndex }: { reel: { id: string, title: string 
               loading="lazy"
             />
           ) : isNear ? (
-            <img 
-              src={`https://img.youtube.com/vi/${reel.id}/hqdefault.jpg`} 
+            <img
+              src={`https://img.youtube.com/vi/${reel.id}/hqdefault.jpg`}
               alt={reel.title}
               className="w-full h-full object-cover opacity-50"
               loading="lazy"
@@ -275,7 +275,7 @@ function Reel({ reel, index, activeIndex }: { reel: { id: string, title: string 
 
         {/* Overlays */}
         <div className="absolute inset-0 pointer-events-none flex flex-col justify-end pb-12 px-4 bg-gradient-to-t from-black/90 via-black/20 to-transparent">
-          
+
           <div className="flex justify-between items-end w-full">
             {/* Caption / Title */}
             <div className="flex-1 pr-12">
@@ -293,8 +293,8 @@ function Reel({ reel, index, activeIndex }: { reel: { id: string, title: string 
                 </div>
                 <span className="text-sm font-bold drop-shadow-md">{likes}K</span>
               </button>
-              
-              <button 
+
+              <button
                 onClick={handleShare}
                 className="flex flex-col items-center gap-1 group"
               >
