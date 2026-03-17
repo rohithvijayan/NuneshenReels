@@ -15,8 +15,34 @@ const anekMalayalam = Anek_Malayalam({
 });
 
 export const metadata: Metadata = {
-  title: 'Nuneshan',
-  description: 'Nuneshan Landing Page',
+  title: 'Nuneshan - Exposing Political Lies in Kerala',
+  description: 'Explore the reels of Nuneshan, dedicated to unmasking political lies and bringing truth to light through engaging short-form videos.',
+  metadataBase: new URL('https://nuneshan.com'), // Replace with actual domain
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    title: 'Nuneshan - Exposing Political Lies in Kerala',
+    description: 'Explore the reels of Nuneshan, dedicated to unmasking political lies and bringing truth to light.',
+    url: 'https://nuneshan.com',
+    siteName: 'Nuneshan',
+    images: [
+      {
+        url: '/logo.png',
+        width: 800,
+        height: 600,
+        alt: 'Nuneshan Logo',
+      },
+    ],
+    locale: 'ml_IN',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Nuneshan - Exposing Political Lies in Kerala',
+    description: 'Explore the reels of Nuneshan, dedicated to unmasking political lies.',
+    images: ['/logo.png'],
+  },
   icons: {
     icon: '/favicon.ico',
     apple: '/apple-touch-icon.png',

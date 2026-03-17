@@ -95,6 +95,9 @@ export default function LiesReelsPage() {
 
   return (
     <div className="bg-[#0f0f0f] h-[100dvh] lg:h-screen w-full overflow-hidden relative text-white" style={{ fontFamily: 'var(--font-anek-malayalam)' }}>
+      {/* SEO H1 */}
+      <h1 className="sr-only">സതീശന്റെ പെരുംനുണകൾ - Nuneshan Reels</h1>
+
       {/* Mobile Back Button */}
       <Link href="/" className="lg:hidden absolute top-6 left-4 z-50 p-3 bg-black/40 backdrop-blur-md rounded-full border border-white/10 hover:bg-white/20 transition-colors">
         <ArrowLeft className="w-6 h-6 text-white" />
@@ -159,7 +162,7 @@ export default function LiesReelsPage() {
               <div className="flex flex-col">
                 <h3 className="text-base font-semibold line-clamp-2 text-[#f1f1f1] group-hover:text-white" title={reel.title}>{reel.title}</h3>
                 <p className="text-sm text-[#aaaaaa] mt-1 hover:text-white transition-colors">@nuneshan_exposed</p>
-                <p className="text-sm text-[#aaaaaa]">120K views • 2 days ago</p>
+                <p className="text-sm text-[#aaaaaa]">{((reel.id.charCodeAt(0) + reel.id.length) % 500 + 50).toFixed(0)}K views • {((reel.id.charCodeAt(1) + reel.id.length) % 10 + 1).toFixed(0)} days ago</p>
               </div>
             </div>
           </div>
@@ -219,6 +222,30 @@ function Reel({ reel, index, activeIndex }: { reel: { id: string, title: string 
   const isActive = activeIndex === index;
   const isNear = Math.abs(activeIndex - index) <= 1;
 
+  // Simple deterministic "stats" based on video ID
+  const views = ((reel.id.charCodeAt(0) + reel.id.length) % 500 + 50).toFixed(0);
+  const likes = ((reel.id.charCodeAt(1) + reel.id.length) % 50 + 5).toFixed(1);
+
+  const handleShare = async () => {
+    const shareData = {
+      title: 'Nuneshan Reels',
+      text: reel.title,
+      url: `https://www.youtube.com/shorts/${reel.id}`,
+    };
+
+    if (navigator.share) {
+      try {
+        await navigator.share(shareData);
+      } catch (err) {
+        console.error('Error sharing:', err);
+      }
+    } else {
+      // Fallback to WhatsApp
+      const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(`${reel.title}\n\nWatch here: https://www.youtube.com/shorts/${reel.id}`)}`;
+      window.open(whatsappUrl, '_blank');
+    }
+  };
+
   return (
     <div data-index={index} className="reel-container h-[100dvh] w-full snap-start relative flex items-center justify-center bg-black">
       {/* Video Player Container */}
@@ -264,15 +291,13 @@ function Reel({ reel, index, activeIndex }: { reel: { id: string, title: string 
                 <div className="p-3 bg-black/40 backdrop-blur-md rounded-full border border-white/10 group-hover:bg-red-600/80 transition-colors shadow-lg">
                   <Heart className="w-7 h-7 text-white" />
                 </div>
-                <span className="text-sm font-bold drop-shadow-md">12K</span>
+                <span className="text-sm font-bold drop-shadow-md">{likes}K</span>
               </button>
-              <button className="flex flex-col items-center gap-1 group">
-                <div className="p-3 bg-black/40 backdrop-blur-md rounded-full border border-white/10 group-hover:bg-white/30 transition-colors shadow-lg">
-                  <MessageCircle className="w-7 h-7 text-white" />
-                </div>
-                <span className="text-sm font-bold drop-shadow-md">456</span>
-              </button>
-              <button className="flex flex-col items-center gap-1 group">
+              
+              <button 
+                onClick={handleShare}
+                className="flex flex-col items-center gap-1 group"
+              >
                 <div className="p-3 bg-black/40 backdrop-blur-md rounded-full border border-white/10 group-hover:bg-white/30 transition-colors shadow-lg">
                   <Share2 className="w-7 h-7 text-white" />
                 </div>
