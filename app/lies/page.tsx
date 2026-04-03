@@ -9,6 +9,15 @@ import logo from '../logo.png';
 
 // Sample data using the provided YouTube Shorts IDs + a few duplicates to allow scrolling to 5+
 const REELS = [
+  { id: 'sDPNFViuZmg', title: 'ചൂടാവാത്ത സതീശൻ #nuneshan' },
+  { id: 'fF6he8F9fWI', title: 'തൃശ്ശൂർ ഡീൽ നുണ!!' },
+  { id: 'qHA3_pq8Oi8', title: 'നുണയും നേരും തുടരും' },
+  { id: 'lyGr79MbjnE', title: 'കേരളം തകർത്ത നുണ' },
+  { id: '_tLGPvWHP3o', title: 'എന്റേം ചേട്ടന്റേം ശബ്ദം ഒരുപോലെ ഇരിക്കുന്നു' },
+  { id: 'OP83YDAUuUs', title: 'നുണേശനെ വിശ്വസിച്ചാൽ ഇതാണ് അനുഭവം. Anchor : AI' },
+  { id: 'PS_GTbwP4m4', title: 'നുണസരവാദി !!' },
+  { id: '9twOcTa7-G8', title: 'ഒരു സ്മൂത്തായ നുണ!!' },
+  { id: 'sQhyG9DR_jg', title: 'നുണേശന്റെ നുണ പൊളിച്ച് കെ സുധാകരൻ' },
   { id: 'APyREigs9LQ', title: '24 മണിക്കൂറിനുള്ളിൽ പൊളിഞ്ഞ നുണേശന്റെ രണ്ടു നുണകൾ !! #നുണേശൻ3.0' },
   { id: 'spb86u4eVpo', title: 'ഹൈക്കോടതി നുണേശനെ വീണ്ടും പൊളിക്കുന്നു!! #നുണേശൻ3.0' },
   { id: '4uY-vkIXg50', title: 'ഒരു മിഠായി നുണ!!  #നുണേശൻ3.0' },
@@ -18,13 +27,12 @@ const REELS = [
   { id: 'SeqT7iXIuOo', title: 'ആരോഗ്യമില്ലാത്ത നുണ!! #നുണേശൻ3.0' },
   { id: 'GpsxTpxcUiU', title: 'ഒരു സോളാർ നുണ!!#നുണേശൻ3.0' },
   { id: 'bs0AhMyzXdA', title: 'ഒരു ഹൈസ്പീഡ് നുണ!! #നുണേശൻ 3.0' },
-  { id: '0qGtPmcXfpM', title: 'നുണ വീണ്ടും ടൗൺഷിപ്പ് കയറിയപ്പോൾ!!        #നുണേശൻ3.0' },
+  { id: '0qGtPmcXfpM', title: 'നുണ വീണ്ടും ടൗൺഷിപ്പ് കയറിയപ്പോൾ!! #നുണേശൻ3.0' },
   { id: 'qGjS3tAM8BY', title: 'ഒരു CongRSS നുണ #നുണേശൻ3.0' },
   { id: 'DJF8lnXQeFg', title: 'കോടതി തന്നെ നുണയനെ എയറിലാക്കിയപ്പോൾ #നുണേശൻ3.0' },
   { id: 'og1q8-8nVj0', title: 'തൊട്ടാൽ ഷോക്കടിക്കുന്ന നുണ!! #നുണേശൻ3.0' },
   { id: '9t0_blwp6YY', title: 'ഫ്യൂസ് അടിച്ചു പോയ നുണ!! #നുണേശൻ3.0' },
   { id: 'JDW5C0qDhCg', title: 'ജിമ്മിൽ കയറിയ നുണ #നുണേശൻ3.0' },
-  { id: 'fKaIG5daQp0', title: 'പി എസ് സി നുണ !! #നുണേശൻ3.0' },
   { id: 'phVz8jPvQpA', title: 'ടൗൺഷിപ്പ് കയറിയ നുണ!!' },
   { id: '-ggOMYxzjmg', title: 'എയറിൽ പോയ നുണ!!' },
   { id: 'HB8iYDU3jDk', title: 'ഒരു സപ്ലൈക്കോ നുണ  #നുണേശൻ3.0' },
@@ -36,14 +44,14 @@ const REELS = [
   { id: 'QisC9RXTeRA', title: 'സതീശന്റെ നുണകൾക്ക് വിശ്രമമില്ല!!  #nuneshan3.0' },
   { id: 'VMnaLbqQrp8', title: 'ഇരുണ്ട കാലത്തെ നുണ  #nuneshan3.0' },
   { id: '4B28kF7EXjs', title: 'ഒരു ഹൈവേ നുണ #nuneshan3.0' },
-  { id: '1cSosFojCxc', title: 'നുണകൾ തുറന്നു കാട്ടുന്നത് തുടരും    #nuneshan3.0' },
-  { id: 'NGMxji_dzyE', title: 'കൊടുത്ത നിവേദനത്തിന് ഉടനടി കീറിക്കളഞ്ഞു പരിഹാരം. അതാണ് സതീശന്റെ എമ്പതി             നുണേശൻ 3.0' },
-  { id: 'CjOwDg0CcsE', title: 'സതീശന്റെ അച്ചടി ഭാഷയിലുള്ള നുണ കാണാം                                        നുണേശൻ 3.0 #nuneshan3.0' },
-  { id: '8AxJTpCvT-E', title: 'കേരളം വിട്ട നുണ!!                                   നുണേശൻ 3.0 #nuneshan3.0' },
-  { id: 'BLnGYqED5lk', title: 'മരിച്ചു പോയ പാണക്കാട് തങ്ങളുടെ പേരിലും നുണ                   നുണേശൻ 3.0 #nuneshan3.0' },
-  { id: '2bbma-ijhsY', title: 'സതീശന്റെ നുണ ടെക്നോ പാർക്ക്‌ സന്ദർശിക്കുന്നു                      നുണേശൻ 3.0 #nuneshan3.0' },
-  { id: '8xjlckd9kWY', title: 'പമ്പ കയറിയ നുണ                                നുണേശൻ 3.0 #nuneshan3.0' },
-  { id: 'Q78h5RSovxw', title: 'കേരളത്തിന്റെ സാമ്പത്തിക സ്ഥിതിയെ പറ്റിയുള്ള നുണ                     നുണേശൻ 3.0 #nuneshan3.0' },
+  { id: '1cSosFojCxc', title: 'നുണകൾ തുറന്നു കാട്ടുന്നത് തുടരും #nuneshan3.0' },
+  { id: 'NGMxji_dzyE', title: 'കൊടുത്ത നിവേദനത്തിന് ഉടനടി കീറിക്കളഞ്ഞു പരിഹാരം. അതാണ് സതീശന്റെ എമ്പതി നുണേശൻ 3.0' },
+  { id: 'CjOwDg0CcsE', title: 'സതീശന്റെ അച്ചടി ഭാഷയിലുള്ള നുണ കാണാം നുണേശൻ 3.0 #nuneshan3.0' },
+  { id: '8AxJTpCvT-E', title: 'കേരളം വിട്ട നുണ!! നുണേശൻ 3.0 #nuneshan3.0' },
+  { id: 'BLnGYqED5lk', title: 'മരിച്ചു പോയ പാണക്കാട് തങ്ങളുടെ പേരിലും നുണ നുണേശൻ 3.0 #nuneshan3.0' },
+  { id: '2bbma-ijhsY', title: 'സതീശന്റെ നുണ ടെക്നോ പാർക്ക്‌ സന്ദർശിക്കുന്നു നുണേശൻ 3.0 #nuneshan3.0' },
+  { id: '8xjlckd9kWY', title: 'പമ്പ കയറിയ നുണ നുണേശൻ 3.0 #nuneshan3.0' },
+  { id: 'Q78h5RSovxw', title: 'കേരളത്തിന്റെ സാമ്പത്തിക സ്ഥിതിയെ പറ്റിയുള്ള നുണ നുണേശൻ 3.0 #nuneshan3.0' },
   { id: 'vhIyCV3BRhE', title: 'സതീശന്റെ പരിണാമങ്ങൾ #നുണേശൻ 3.0 #nuneshan3.0' },
   { id: 'Rk-7Oq8GUA4', title: 'നുണേശൻ മറന്നു പോയതാണ് 🤣നുണേശൻ 3.0   #nuneshan3.0' },
 ];
@@ -152,10 +160,10 @@ export default function LiesReelsPage() {
             onClick={() => setSelectedVideo(reel)}
           >
             <div className="w-full aspect-video bg-zinc-800 rounded-xl overflow-hidden relative">
-              <Thumbnail 
-                src={`https://img.youtube.com/vi/${reel.id}/hqdefault.jpg`} 
-                alt={reel.title} 
-                className="w-full h-full group-hover:scale-105 transition-transform duration-300" 
+              <Thumbnail
+                src={`https://img.youtube.com/vi/${reel.id}/hqdefault.jpg`}
+                alt={reel.title}
+                className="w-full h-full group-hover:scale-105 transition-transform duration-300"
               />
               <div className="absolute bottom-2 right-2 bg-black/80 text-xs px-1.5 py-0.5 rounded font-mono text-white">0:59</div>
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center">
